@@ -1,7 +1,7 @@
 fetch('snacks.json')
   .then(response => response.json())
   .then(data => {
-    const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const today = 0 // new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
     const snack = data[today];
 
     if (!snack) return;
