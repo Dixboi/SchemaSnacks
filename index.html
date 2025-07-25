@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>SchemaSnacks</title>
   <style>
     body {
@@ -52,7 +52,6 @@
     .options label {
       display: block;
       margin: 0.5rem 0;
-      padding: 0.4rem;
     }
 
     .explanation {
@@ -98,9 +97,12 @@
 
     <div class="options" id="options"></div>
 
-    <button onclick="checkAnswers()">Show Answer</button>
+    <button onclick="document.querySelector('.explanation').style.display = 'block'">
+      Show Answer
+    </button>
 
     <div class="explanation">
+      <p><strong>✅ Correct Answer(s):</strong> <span id="correct"></span></p>
       <p id="explanation-text"></p>
       <p><strong>📚 Recommended Resource:</strong><br />
         <a id="resource-link" href="#" target="_blank"></a>
@@ -113,55 +115,35 @@
   </footer>
 
   <script>
-  fetch('snacks.json')
-    .then(response => response.json())
-    .then(data => {
-      const today = new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
-      const snack = data[today];
+    fetch('snacks.json')
+      .then(response => response.json())
+      .then(data => {
+        const todayKey = Object.keys(data)[0]; // only one per day
+        const snack = data[todayKey];
 
-      if (!snack) return;
+        document.getElementById("title").innerText = snack.title;
+        document.getElementById("situation").innerText = snack.situation;
 
-      document.getElementById("title").innerText = snack.title;
-      document.getElementById("situation").innerText = snack.situation;
+        const optionsDiv = document.getElementById("options");
+        const allOptions = [...snack.correct_answers, ...snack.incorrect_answers];
+        allOptions.forEach((option, index) => {
+          const label = document.createElement("label");
+          const letter = String.fromCharCode(97 + index);
+          label.innerHTML = `<input type="checkbox" name="answer" /> ${letter}. ${option}`;
+          optionsDiv.appendChild(label);
+        });
 
-      const optionsDiv = document.getElementById("options");
-      const allAnswers = [...snack.correct_answers, ...snack.incorrect_answers];
-      window.correctAnswers = snack.correct_answers;
+        document.getElementById("correct").innerText = snack.correct_answers.join(", ");
+        document.getElementById("explanation-text").innerText = snack.explanation;
 
-      allAnswers.forEach((option, index) => {
-        const label = document.createElement("label");
-        const letter = String.fromCharCode(97 + index);
-        label.innerHTML = `<input type="checkbox" name="answer" value="${option}" /> ${letter}. ${option}`;
-        optionsDiv.appendChild(label);
+        const res = snack.recommended_resources[0];
+        document.getElementById("resource-link").href = res.url;
+        document.getElementById("resource-link").innerText = res.title;
+      })
+      .catch(error => {
+        console.error('Error loading snack:', error);
+        document.querySelector(".card").innerHTML = "<p>Sorry, today's snack couldn't be loaded.</p>";
       });
-
-      document.getElementById("explanation-text").innerText = snack.explanation;
-      const res = snack.recommended_resources[0];
-      document.getElementById("resource-link").href = res.url;
-      document.getElementById("resource-link").innerText = res.title;
-    });
-
-  function checkAnswers() {
-    const checkboxes = document.querySelectorAll("input[name='answer']");
-    checkboxes.forEach((checkbox) => {
-      const label = checkbox.parentElement;
-      const value = checkbox.value;
-
-      if (checkbox.checked) {
-        if (correctAnswers.includes(value)) {
-          label.style.backgroundColor = "#d4edda"; // green
-        } else {
-          label.style.backgroundColor = "#f8d7da"; // red
-        }
-        label.style.borderRadius = "6px";
-      }
-
-      checkbox.disabled = true; // Disable all checkboxes
-    });
-
-    document.querySelector(".explanation").style.display = "block";
-  }
-</script>
-
+  </script>
 </body>
 </html>
