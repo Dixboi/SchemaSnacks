@@ -131,15 +131,10 @@
       allAnswers.forEach((option, index) => {
         const label = document.createElement("label");
         const letter = String.fromCharCode(97 + index);
-        const id = `opt-${index}`;
-        label.innerHTML = `
-          <input type="checkbox" name="answer" id="${id}" value="${option}" />
-          <span>${letter}. ${option}</span>
-        `;
+        label.innerHTML = `<input type="checkbox" name="answer" value="${option}" /> ${letter}. ${option}`;
         optionsDiv.appendChild(label);
       });
 
-      // explanation
       document.getElementById("explanation-text").innerText = snack.explanation;
       const res = snack.recommended_resources[0];
       document.getElementById("resource-link").href = res.url;
@@ -151,6 +146,7 @@
     checkboxes.forEach((checkbox) => {
       const label = checkbox.parentElement;
       const value = checkbox.value;
+
       if (checkbox.checked) {
         if (correctAnswers.includes(value)) {
           label.style.backgroundColor = "#d4edda"; // green
@@ -159,8 +155,10 @@
         }
         label.style.borderRadius = "6px";
       }
-      checkbox.disabled = true; // disable all after click
+
+      checkbox.disabled = true; // Disable all checkboxes
     });
+
     document.querySelector(".explanation").style.display = "block";
   }
 </script>
