@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>SchemaSnacks</title>
+  <style>
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: #fff9f0;
+      color: #333;
+      margin: 0;
+      padding: 0;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+
+    header {
+      width: 100%;
+      background-color: #ffebcc;
+      padding: 1.5rem 1rem;
+      text-align: center;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 2rem;
+    }
+
+    header h2 {
+      margin: 0.5rem 0 0;
+      font-size: 1.2rem;
+      color: #995c00;
+    }
+
+    .card {
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+      margin: 2rem;
+      max-width: 600px;
+      padding: 2rem;
+      width: 90%;
+    }
+
+    .card h3 {
+      margin-top: 0;
+    }
+
+    .options label {
+      display: block;
+      margin: 0.5rem 0;
+    }
+
+    .explanation {
+      background: #fff7e6;
+      padding: 1rem;
+      margin-top: 1.5rem;
+      border-radius: 8px;
+      display: none;
+    }
+
+    footer {
+      text-align: center;
+      margin: 3rem 0 1rem;
+      font-size: 0.9rem;
+      color: #777;
+    }
+
+    button {
+      background: #ffbf66;
+      border: none;
+      padding: 0.7rem 1.2rem;
+      border-radius: 8px;
+      cursor: pointer;
+      margin-top: 1rem;
+      font-size: 1rem;
+      transition: background 0.2s ease-in-out;
+    }
+
+    button:hover {
+      background: #ffaa33;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>🍪 SchemaSnacks</h1>
+    <h2 id="tagline">🧠 Mindful Monday</h2>
+  </header>
+
+  <div class="card">
+    <h3 id="title"></h3>
+    <p id="situation"></p>
+
+    <div class="options" id="options"></div>
+
+    <button onclick="document.querySelector('.explanation').style.display = 'block'">
+      Show Answer
+    </button>
+
+    <div class="explanation">
+      <p><strong>✅ Correct Answer(s):</strong> <span id="correct"></span></p>
+      <p id="explanation-text"></p>
+      <p><strong>📚 Recommended Resource:</strong><br />
+        <a id="resource-link" href="#" target="_blank"></a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    New snack served daily 🍪 | Built with ❤️ for data engineers
+  </footer>
+
+  <script>
+    fetch('snacks.json')
+      .then(response => response.json())
+      .then(data => {
+        const todayKey = Object.keys(data)[0]; // only one per day
+        const snack = data[todayKey];
+
+        document.getElementById("title").innerText = snack.title;
+        document.getElementById("situation").innerText = snack.situation;
+
+        const optionsDiv = document.getElementById("options");
+        const allOptions = [...snack.correct_answers, ...snack.incorrect_answers];
+        allOptions.forEach((option, index) => {
+          const label = document.createElement("label");
+          const letter = String.fromCharCode(97 + index);
+          label.innerHTML = `<input type="checkbox" name="answer" /> ${letter}. ${option}`;
+          optionsDiv.appendChild(label);
+        });
+
+        document.getElementById("correct").innerText = snack.correct_answers.join(", ");
+        document.getElementById("explanation-text").innerText = snack.explanation;
+
+        const res = snack.recommended_resources[0];
+        document.getElementById("resource-link").href = res.url;
+        document.getElementById("resource-link").innerText = res.title;
+      })
+      .catch(error => {
+        console.error('Error loading snack:', error);
+        document.querySelector(".card").innerHTML = "<p>Sorry, today's snack couldn't be loaded.</p>";
+      });
+  </script>
+</body>
+</html>
