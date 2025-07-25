@@ -8,6 +8,7 @@ fetch('snacks.json')
 
     document.getElementById("title").innerText = snack.title;
     document.getElementById("situation").innerText = snack.situation;
+    document.getElementById("explanation-text").innerText = snack.explanation;
 
     const optionsDiv = document.getElementById("options");
     const allAnswers = [...snack.correct_answers, ...snack.incorrect_answers];
