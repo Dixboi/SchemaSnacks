@@ -1,0 +1,80 @@
+body {
+  font-family: 'Poppins', sans-serif;
+  background-color: #fff9f0;
+  color: #333;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+header {
+  width: 100%;
+  background-color: #ffebcc;
+  padding: 1.5rem 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+header h1 {
+  margin: 0;
+  font-size: 2rem;
+}
+
+header h2 {
+  margin: 0.5rem 0 0;
+  font-size: 1.2rem;
+  color: #995c00;
+}
+
+.card {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  margin: 2rem;
+  max-width: 600px;
+  padding: 2rem;
+  width: 90%;
+}
+
+.card h3 {
+  margin-top: 0;
+}
+
+.options label {
+  display: block;
+  margin: 0.5rem 0;
+  padding: 0.4rem;
+  transition: background-color 0.3s ease;
+}
+
+.explanation {
+  background: #fff7e6;
+  padding: 1rem;
+  margin-top: 1.5rem;
+  border-radius: 8px;
+  display: none;
+}
+
+footer {
+  text-align: center;
+  margin: 3rem 0 1rem;
+  font-size: 0.9rem;
+  color: #777;
+}
+
+button {
+  background: #ffbf66;
+  border: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-top: 1rem;
+  font-size: 1rem;
+  transition: background 0.2s ease-in-out;
+}
+
+button:hover {
+  background: #ffaa33;
+}
