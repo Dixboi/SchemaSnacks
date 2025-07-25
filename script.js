@@ -1,7 +1,7 @@
 fetch('snacks.json')
   .then(response => response.json())
   .then(data => {
-    const today = 0 // new Date().getDay(); // 0 = Sunday, 1 = Monday, etc.
+    const today = 0 // new Date().getDay();
     const snack = data[today];
 
     if (!snack) return;
@@ -21,9 +21,18 @@ fetch('snacks.json')
       optionsDiv.appendChild(label);
     });
 
-    const res = snack.recommended_resources[0];
-    document.getElementById("resource-link").href = res.url;
-    document.getElementById("resource-link").innerText = res.title;
+    const resourceContainer = document.getElementById("resource-links");
+    resourceContainer.innerHTML = "";
+
+    snack.recommended_resources.forEach(res => {
+      const link = document.createElement("a");
+      link.href = res.url;
+      link.innerText = res.title;
+      link.target = "_blank";
+      link.style.display = "block";
+      link.style.marginTop = "0.3rem";
+      resourceContainer.appendChild(link);
+    });
   });
 
 function checkAnswers() {
@@ -32,12 +41,10 @@ function checkAnswers() {
     const label = checkbox.parentElement;
     const answerText = label.textContent.slice(3).trim();
 
-    if (checkbox.checked) {
-      if (correctAnswers.includes(answerText)) {
-        label.style.backgroundColor = "#d4edda"; // green
-      } else {
-        label.style.backgroundColor = "#f8d7da"; // red
-      }
+    if (correctAnswers.includes(answerText)) {
+      label.style.backgroundColor = "#d4edda"; // green
+    } else if (checkbox.checked) {
+      label.style.backgroundColor = "#f8d7da"; // red
     }
 
     checkbox.disabled = true;
