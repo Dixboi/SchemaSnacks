@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SchemaSnacks</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header>
+    <h1>🍪 SchemaSnacks</h1>
+    <h2 id="tagline">🧠 Mindful Monday</h2>
+  </header>
+
+  <div class="card">
+    <h3 id="title"></h3>
+    <p id="situation"></p>
+
+    <div class="options" id="options"></div>
+
+    <button onclick="checkAnswers()">Show Answer</button>
+
+    <div class="explanation">
+      <p id="explanation-text"></p>
+      <p><strong>📚 Recommended Resource:</strong><br />
+        <a id="resource-link" href="#" target="_blank"></a>
+      </p>
+    </div>
+  </div>
+
+  <footer>
+    New snack served daily 🍪 | Built with ❤️ for data engineers
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
