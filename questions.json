@@ -23,6 +23,20 @@
     ]
   },
 	"1": {
-		
-	}
+    "title": "Tall Orders and Smart Storage",
+    "situation": "You're building a data platform for a company’s HR analytics team. They’ve asked for dashboards and reports that analyze employee demographics using height, weight, and age data.\n\nEach record includes thousands of employees, and they want to:\n- Run statistical analysis on these values\n- Create visualizations (e.g. BMI distribution, age histograms)\n- Efficiently store and query this numerical data at scale\n\nYou’re considering how best to store this structured, numerical dataset for fast, analytical querying.\n\nWhich data structure is most suitable for this use case?",
+    "correct_answers": ["Columnar table"],
+    "incorrect_answers": [
+      "Key-value store",
+      "Row-oriented database",
+      "Graph database"
+    ],
+    "explanation": "A columnar table is ideal for analytical workloads involving numerical and categorical data. Columnar formats (like Parquet or ORC) allow each column to be scanned independently, making queries like 'average height' or 'median age' highly efficient. They're also great for compression, which reduces storage cost.\n\nA row-oriented database (e.g., MySQL or PostgreSQL) can handle this data, but it’s optimized for transactional workloads (OLTP), where entire rows are accessed frequently. It’s less efficient for column-based analytical queries.\n\nKey-value stores are best for fast lookups but not analytics. Graph databases excel at modeling relationships, not flat numerical data.",
+    "recommended_resources": [
+      {
+        "title": "What is a columnar database?",
+        "url": "https://www.techtarget.com/searchdatamanagement/definition/columnar-database"
+      }
+    ]
+  }
 }
