@@ -1,0 +1,25 @@
+{
+  "0": {
+		"title": "Need for Speed",
+		"situation": "You’ve just joined a startup that’s building a next-gen e-commerce platform.\n\nThe team is excited about offering customers real-time updates: product availability, flash sales, and order confirmations — all happening live on the site.\n\nAs the system scales, you notice it’s handling hundreds of thousands of transactions per minute. The backend needs to process this high-volume data and update dashboards instantly.\n\nYour team is debating which type of data system to use to support this goal.\n\nWhich type of system is best suited for this use case?",
+		"correct_answers": [
+			"Streaming system"
+		],
+		"incorrect_answers": [
+			"Batch system",
+      "Scheduling system",
+      "Data lake system"
+    ],
+    "explanation": "Batch systems are excellent for processing large data volumes, but they do so in chunks — not in real time.\n\nScheduling systems, like cron or Airflow, manage workflows and task timing but aren’t built for live data processing.\n\nData lakes are great for storing massive datasets, often used for analytics, not real-time operations.\n\nA streaming system, however, is designed for continuous, real-time data ingestion and processing. Tools like Apache Kafka, Apache Flink, and Spark Structured Streaming allow systems to react instantly to incoming events — exactly what an e-commerce platform with live updates needs.",
+    "recommended_resources": [
+			{
+				"title": "Introduction to data streaming by Databricks",
+				"url": "https://www.databricks.com/glossary/data-streaming#:~:text=%E2%80%9CStreaming%20data%E2%80%9D%20refers%20to%20the,processes%20it%20as%20it%20arrives."
+			},
+			{
+				"title": "Data Streaming: A Complete Overview with Benefits, Challenges, Use Cases & Examples",
+				"url": "https://www.cdata.com/blog/data-streaming#:~:text=What%20is%20data%20streaming?,more%20traditional%20data%20processing%20methods."
+			}
+    ]
+  }
+}
