@@ -1,0 +1,37 @@
+{
+  "Monday": [
+    "🧠 Mindful Monday",
+    "🍪 Munchable Monday",
+    "🔍 Mini-Insight Monday"
+  ],
+  "Tuesday": [
+    "😋 Tasty Tuesday",
+    "📚 Trivia Tuesday",
+    "🧵 Tiny Fact Tuesday"
+  ],
+  "Wednesday": [
+    "⚡ Wired-Up Wednesday",
+    "🎉 Whiz-Bang Wednesday",
+    "🤔 What-if Wednesday"
+  ],
+  "Thursday": [
+    "🧠 Thinky Thursday",
+    "📎 Tiny Truth Thursday",
+    "💡 Thoughtful Thursday"
+  ],
+  "Friday": [
+    "🌟 Fresh-Fact Friday",
+    "⚙️ Fast Byte Friday",
+    "🎈 Fun-Filled Friday"
+  ],
+  "Saturday": [
+    "🍫 Small Bytes Saturday",
+    "📦 Snack Stack Saturday",
+    "📐 Schematic Saturday"
+  ],
+  "Sunday": [
+    "🛋️ Snackable Sunday",
+    "🔥 Slow Burn Sunday",
+    "🧘 Serene Schema Sunday"
+  ]
+}
